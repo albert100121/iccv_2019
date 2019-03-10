@@ -7,7 +7,7 @@ from vispy_utilities import *
 from CameraModels.Sphere import Sphere
 import vispy
 
-data_path = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Stanford3D"
+data_path = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/SSD"
 depth_map_dir = os.path.join(data_path, "depth_up")
 rgb_map_dir = os.path.join(data_path, "image_up")
 estimation_dir = os.path.join(data_path, "est")
@@ -17,7 +17,7 @@ rgb_maps = list_directories(rgb_map_dir)
 estimation_maps = list_directories(estimation_dir)
 
 i = 0
-depth_map = np.load(os.path.join(depth_map_dir, depth_maps[i]))#[:, :, 0]
+depth_map = np.load(os.path.join(depth_map_dir, depth_maps[i]))[:, :, 0]
 rgb_map = cv2.imread(os.path.join(rgb_map_dir, rgb_maps[i]))
 estimation_map = np.load(os.path.join(estimation_dir, estimation_maps[i]))
 
