@@ -18,11 +18,11 @@ def mae(im1, im2, mask):
     return mean_absolute_error(im1[mask], im2[mask]) * 512 * 1024 / np.count_nonzero(mask)
 
 
-data_path = "/home/kike/Documents/Dataset/ICCV_dataset/MP3D/test"
+data_path = "/home/kike/Documents/Dataset/ICCV_dataset/Stanford3D/test"
 dir_disp_gt = os.path.join(data_path, "disp_up")
 dir_disp_est = os.path.join(data_path, "asw_estimation")
 dir_depth_gt = os.path.join(data_path, "depth_up")
-dir_rgb_map = os.path.join(data_path, "image_up")
+dir_rgb_map = os.path.join(data_path, "sparse_image_up")
 
 list_disp_gt = list_directories(dir_disp_gt)
 list_disp_est = list_directories(dir_disp_est, key="_pp")
