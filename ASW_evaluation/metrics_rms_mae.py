@@ -17,6 +17,16 @@ def rmse(im1, im2, mask):
 def mae(im1, im2, mask):
     return mean_absolute_error(im1[mask], im2[mask]) * 512 * 1024 / np.count_nonzero(mask)
 
+"""
+    data_path --> dir of the dataset
+    The folders inside have to be the following structure tree
+    main dir
+        |--- asw_estimation : disparity estimation
+        |--- disp_up: GT disparity
+        |--- depth_up: GT depth map
+        |--- image_up
+        |--- imag_down
+"""
 
 data_path = "/home/kike/Documents/Dataset/ICCV_dataset/Stanford3D/test"
 dir_disp_gt = os.path.join(data_path, "disp_up")
