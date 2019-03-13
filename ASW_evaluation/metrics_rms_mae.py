@@ -20,14 +20,14 @@ from utils import *
         |--- image_up
         |--- imag_down
 """
-report_name = "SF3D_ASW.csv"
-data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/SF3D/test"
-data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/ASW"
+report_name = "MP3D_ASW.csv"
+data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/MP3D/test"
+data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/ASW"
 
 dir_disp_gt = os.path.join(data_path_gt, "disp_up")
 dir_disp_est = os.path.join(data_path_est, "disp_up_est")
 dir_depth_gt = os.path.join(data_path_gt, "depth_up")
-dir_rgb_map = os.path.join(data_path_gt, "sparse_image_up")
+dir_rgb_map = os.path.join(data_path_gt, "image_up")
 
 list_disp_gt = list_directories(dir_disp_gt)
 list_disp_est = list_directories(dir_disp_est, key="_pp")
@@ -57,7 +57,7 @@ for i in range(len(list_disp_est)):
     rmse_aux_disp = rmse(disp_gt, disp_asw, mask)
     mae_aux_disp = mae(disp_gt, disp_asw, mask)
 
-    depth_gt = np.load(os.path.join(dir_depth_gt, list_depth_gt[i]))#[:, :, 0]
+    depth_gt = np.load(os.path.join(dir_depth_gt, list_depth_gt[i]))[:, :, 0]
     depth_asw = disp2depth(0.2, disp_asw)
 
     mask[0:26, :] = 0
