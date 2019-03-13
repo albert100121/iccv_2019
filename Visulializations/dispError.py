@@ -39,10 +39,6 @@ error_rgb2 = image_masking(error, [255, 255, 0], mask).astype(np.uint8)
 mask = error > 1
 error_rgb3 = image_masking(error, [255, 0, 0], mask).astype(np.uint8)
 
-# plt.figure(1)
-# plt.imshow(error, cmap="nipy_spectral")
-# plt.colorbar()
-
 error_blend = cv2.addWeighted(error_rgb1, 0.3,
                               error_rgb2, 1, 0.0)
 
@@ -57,7 +53,7 @@ error_blend = cv2.addWeighted(cv2.cvtColor(rgb_map, cv2.COLOR_BGR2RGB), 0.5,
 
 
 plt.figure(2)
+plt.title("Disparity Error G:[>0.1]  Y:[>0.5] R:[>1]")
 plt.imshow(error_blend)
-
-
+plt.savefig(os.path.join(data_path, "dispError.png"))
 plt.show()
