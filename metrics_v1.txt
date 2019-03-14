@@ -1,0 +1,88 @@
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/ASW
+disp RMSE:,1.6488314753821722
+disp MAE: ,0.44108288321014927
+depth RMSE: ,0.5193033853572294
+depth MAE: ,0.14277943123739728
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/PSM_ori
+disp RMSE:,1.0498879652765833
+disp MAE: ,0.3139703615381397
+depth RMSE: ,0.2838279918143081
+depth MAE: ,0.09460944403129913
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/best_model1_vCV
+disp RMSE:,0.8010699068411864
+disp MAE: ,0.19961998223232566
+depth RMSE: ,0.24728496198952926
+depth MAE: ,0.07449932140594612
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/best_model2_LCV
+disp RMSE:,0.7598036146973761
+disp MAE: ,0.17640617315721782
+depth RMSE: ,0.23090263920782647
+depth MAE: ,0.06584630234687883
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/ASW
+disp >0.1:,0.5653846886150998
+disp >0.5: ,0.08892334521341184
+disp >1: ,0.04667552824943296
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/PSM_ori
+disp >0.1:,0.40902261370437937
+disp >0.5: ,0.0727098134955353
+disp >1: ,0.033422755356058695
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/best_model1_vCV
+disp >0.1:,0.28462295308490654
+disp >0.5: ,0.03624237038173284
+disp >1: ,0.016775584290803704
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/best_model2_LCV
+disp >0.1:,0.23571537946326293
+disp >0.5: ,0.030025180134255865
+disp >1: ,0.014769819824576728
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/ASW
+disp RMSE:,0.7754180601915359
+disp MAE: ,0.21551705105310293
+depth RMSE: ,0.2628955527429989
+depth MAE: ,0.07793827589170449
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/PSM_ori
+disp RMSE:,0.4053807675272652
+disp MAE: ,0.1292110958414227
+depth RMSE: ,0.1068528394945561
+depth MAE: ,0.041834481113552716
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/best_model1_vCV
+disp RMSE:,0.42627814474342907
+disp MAE: ,0.1342455407076791
+depth RMSE: ,0.11118227050821591
+depth MAE: ,0.04480136773359547
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/best_model2_LCV
+disp RMSE:,0.3859304108560479
+disp MAE: ,0.11208228975213318
+depth RMSE: ,0.09586267950128666
+depth MAE: ,0.03618603716087097
+
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/ASW
+disp >0.1:,0.25378169919469673
+disp >0.5: ,0.022271010676041026
+disp >1: ,0.011250744899505465
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/PSM_ori
+disp >0.1:,0.10334189654571083
+disp >0.5: ,0.018362073475504156
+disp >1: ,0.008121236791751654
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/best_model1_vCV
+disp >0.1:,0.11174674574377502
+disp >0.5: ,0.0182210800095732
+disp >1: ,0.008106034377525592
+
+/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/best_model2_LCV
+disp >0.1:,0.08483511826087689
+disp >0.5: ,0.014713183999648822
+disp >1: ,0.006595085407125539
