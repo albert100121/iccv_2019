@@ -19,21 +19,19 @@ from utils import *
         |--- image_up
         |--- imag_down
 """
-report_name = "SF3D_best_model2_LCV.csv"
-data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/SF3D/test"
-data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/best_model2_LCV"
+report_name = "MP3D_ASW_disp_errors.csv"
+data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/MP3D/test"
+data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/ASW"
 
 dir_disp_gt = os.path.join(data_path_gt, "disp_up")
 dir_disp_est = os.path.join(data_path_est, "disp_up_est")
 
 dir_depth_gt = os.path.join(data_path_gt, "depth_up")
-dir_depth_est = os.path.join(data_path_est, "depth_up_est")
 dir_rgb_map = os.path.join(data_path_gt, "image_up")
 
 list_disp_gt = list_directories(dir_disp_gt)
-list_disp_est = list_directories(dir_disp_est)
+list_disp_est = list_directories(dir_disp_est, key="_pp")
 list_depth_gt = list_directories(dir_depth_gt)
-list_depth_est = list_directories(dir_depth_est)
 list_rgb_map = list_directories(dir_rgb_map)
 
 global_disp_range_1 = 0
@@ -44,16 +42,14 @@ report = []
 
 tbar = tqdm(total=len(list_disp_est))
 for i in range(len(list_disp_est)):
-    try:
-        disp_gt = np.load(os.path.join(dir_disp_gt, list_disp_gt[i]))
-    except:
-        print("File {} was not loaded".format(list_disp_gt[i]))
-        continue
+    disp_gt = np.load(os.path.join(dir_disp_gt, list_disp_gt[i]))
 
     mask_range = disp_gt > 67.5
     disp_gt[mask_range] = 0
 
-    disp_est = np.load(os.path.join(dir_disp_est, list_disp_est[i]))
+    im = Image.open(os.path.join(dir_disp_est, list_disp_est[i]))
+    imarray = np.array(im) * (-1)
+    disp_est = imutils.rotate_bound(imarray, 90) * 180 / 512
 
     mask = disp_gt > 0
     disp_est[(mask * (-1) + 1).astype(np.bool)] = 0
