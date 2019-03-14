@@ -19,9 +19,9 @@ from utils import *
         |--- image_up
         |--- imag_down
 """
-report_name = "SF3D_best_model2_LCV.csv"
+report_name = "SF3D_PSM_ori_disp_errors.csv"
 data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/SF3D/test"
-data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/best_model2_LCV"
+data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/PSM_ori"
 
 dir_disp_gt = os.path.join(data_path_gt, "disp_up")
 dir_disp_est = os.path.join(data_path_est, "disp_up_est")
