@@ -30,22 +30,34 @@ im = Image.open(os.path.join(dir_disp_est, list_disp_est[i]))
 imarray = np.array(im) * (-1)
 disp_est = imutils.rotate_bound(imarray, 90) * 180 / 512
 depth_est = disp2depth(0.2, disp_est)
-mask = depth_est > depth_gt.max()
-depth_est[mask] = depth_gt.max()
+
+disp = 20
+mask = disp_gt > disp
+disp_gt[mask] = disp
+mask = disp_est > disp
+disp_est[mask] = disp
+
+
+depth = 10
+mask = depth_est > depth
+depth_est[mask] = depth
+mask = depth_gt > depth
+depth_gt[mask] = depth
+
 
 rgb_map = cv2.imread(os.path.join(dir_rgb_map, list_rgb_maps[i]))
 
-plot_image(1, depth_gt, "Depth GT", True, cmap='coolwarm', filename=os.path.join(data_path_est, "Depth_GT.png"))
-plot_image(2, depth_est, "Depth EST", True, cmap='coolwarm', filename=os.path.join(data_path_est, "Depth_EST.png"))
+plot_image(1, depth_gt, "Depth GT", True, cmap='gnuplot2', filename=os.path.join(data_path_est, "Depth_GT.png"))
+plot_image(2, depth_est, "Depth EST", True, cmap='gnuplot2', filename=os.path.join(data_path_est, "Depth_EST.png"))
 
-plot_image(3, disp_gt, "Disp GT", True, cmap='coolwarm', filename=os.path.join(data_path_est, "Disp_GT.png"))
-plot_image(4, disp_est, "Disp EST", True, cmap='coolwarm',filename=os.path.join(data_path_est, "Disp_EST.png"))
+plot_image(3, disp_gt, "Disp GT", True, cmap='gnuplot2', filename=os.path.join(data_path_est, "Disp_GT.png"))
+plot_image(4, disp_est, "Disp EST", True, cmap='gnuplot2',filename=os.path.join(data_path_est, "Disp_EST.png"))
 
 error = abs(depth_gt - depth_est)
 mask = (error > 2)
 error[mask] = 2
 
-plot_image(5, error, "Error depth", True, cmap="coolwarm", filename=os.path.join(data_path_est, "ErrorDepth.png"))
+plot_image(5, error, "Error depth", True, cmap="hot", filename=os.path.join(data_path_est, "ErrorDepth.png"))
 
 plt.show()
 # camera = Sphere(width=1024, height=512)

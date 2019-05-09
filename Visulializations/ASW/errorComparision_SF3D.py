@@ -6,48 +6,59 @@ from vispy_utilities import *
 from CameraModels.Sphere import Sphere
 import vispy
 from utils import *
+from PIL import Image
+import imutils
 
-data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Visualization/reasonable_image_MP3D"
-data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Visualization/evaluation/Best_model1_vertCV_MP3D/eval"
+data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Visualization/reasonable_image_SF3D"
+data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Visualization/evaluation/ASW_SF3D/eval"
 
 dir_depth_gt = os.path.join(data_path_gt, "depth_up_gt")
-dir_depth_est = os.path.join(data_path_est, "depth_up_est")
 dir_disp_gt = os.path.join(data_path_gt, "disp_up_gt")
 dir_disp_est = os.path.join(data_path_est, "disp_up_est")
 dir_rgb_map = os.path.join(data_path_gt, "image_up")
 
 list_depth_gt = list_directories(dir_depth_gt)
-list_depth_est = list_directories(dir_depth_est)
 list_disp_gt = list_directories(dir_disp_gt)
 list_disp_est = list_directories(dir_disp_est)
 list_rgb_maps = list_directories(dir_rgb_map)
 
 i = 2
-depth_gt = np.load(os.path.join(dir_depth_gt, list_depth_gt[i]))[:, :, 0]
-depth_est = np.load(os.path.join(dir_depth_est, list_depth_est[i]))
-
+depth_gt = np.load(os.path.join(dir_depth_gt, list_depth_gt[i]))#[:, :, 0]
 disp_gt = np.load(os.path.join(dir_disp_gt, list_disp_gt[i]))
-mask = disp_gt > 20
-disp_gt[mask] = 0
-disp_est = np.load(os.path.join(dir_disp_est, list_disp_est[i]))
-disp_est[mask] = 0
+
+im = Image.open(os.path.join(dir_disp_est, list_disp_est[i]))
+imarray = np.array(im) * (-1)
+disp_est = imutils.rotate_bound(imarray, 90) * 180 / 512
+depth_est = disp2depth(0.2, disp_est)
+
+disp = 13
+mask = disp_gt > disp
+disp_gt[mask] = disp
+mask = disp_est > disp
+disp_est[mask] = disp
+
+
+depth = 3.6
+mask = depth_est > depth
+depth_est[mask] = depth
+mask = depth_gt > depth
+depth_gt[mask] = depth
+
 rgb_map = cv2.imread(os.path.join(dir_rgb_map, list_rgb_maps[i]))
 
-plot_image(1, depth_gt, "Depth GT", True, filename=os.path.join(data_path_est, "Depth_GT.png"))
-plot_image(2, depth_est, "Depth EST", False, filename=os.path.join(data_path_est, "Depth_EST.png"))
+plot_image(1, depth_gt, "Depth GT", True, cmap='gnuplot2', filename=os.path.join(data_path_est, "Depth_GT.png"))
+plot_image(2, depth_est, "Depth EST", True, cmap='gnuplot2', filename=os.path.join(data_path_est, "Depth_EST.png"))
 
-plot_image(3, disp_gt, "Disp GT", False, filename=os.path.join(data_path_est, "Disp_GT.png"))
-plot_image(4, disp_est, "Disp EST", False, filename=os.path.join(data_path_est, "Disp_EST.png"))
+plot_image(3, disp_gt, "Disp GT", True, cmap='gnuplot2', filename=os.path.join(data_path_est, "Disp_GT.png"))
+plot_image(4, disp_est, "Disp EST", True, cmap='gnuplot2',filename=os.path.join(data_path_est, "Disp_EST.png"))
 
-# mask = depth_gt > 10
-# depth_gt[mask] = 0
-# depth_est[mask] = 0
+error = np.zeros_like(depth_gt)
+mask = depth_gt > 0
+error[mask] = abs(depth_gt[mask] - depth_est[mask])
+mask = error > 0.5
+error[mask] = 0.5
 
-error = (depth_gt - depth_est)
-mask = (error > 4) | (error < -4)
-error[mask] = 0
-
-plot_image(5, error, "Error depth", True, cmap="nipy_spectral", filename=os.path.join(data_path_est, "ErrorDepth.png"))
+plot_image(5, error, "Error depth", True, cmap="hot", filename=os.path.join(data_path_est, "ErrorDepth.png"))
 
 plt.show()
 # camera = Sphere(width=1024, height=512)

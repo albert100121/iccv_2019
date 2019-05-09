@@ -45,7 +45,7 @@ error_rgb2 = image_masking(error, [255, 255, 0], mask).astype(np.uint8)
 mask = error > 1
 error_rgb3 = image_masking(error, [255, 0, 0], mask).astype(np.uint8)
 
-error_blend = cv2.addWeighted(error_rgb1, 0.2,
+error_blend = cv2.addWeighted(error_rgb1, 0.5,
                               error_rgb2, 1, 0.0)
 
 

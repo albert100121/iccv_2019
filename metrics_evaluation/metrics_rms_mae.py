@@ -19,9 +19,9 @@ from utils import *
         |--- image_up
         |--- imag_down
 """
-report_name = "SF3D_best_model2_LCV.csv"
-data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/SF3D/test"
-data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/SF3D/best_model2_LCV"
+report_name = "MP3D_subpixels.csv"
+data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/MP3D/test"
+data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/subpixel"
 
 dir_disp_gt = os.path.join(data_path_gt, "disp_up")
 dir_disp_est = os.path.join(data_path_est, "disp_up_est")
@@ -64,7 +64,7 @@ for i in range(len(list_disp_est)):
 
     # depth_gt = disp2depth(0.2, disp_gt)
     # depth_est = disp2depth(0.2, disp_est)
-    depth_gt = np.load(os.path.join(dir_depth_gt, list_depth_gt[i]))#[:, :, 0]
+    depth_gt = np.load(os.path.join(dir_depth_gt, list_depth_gt[i]))[:, :, 0]
     depth_est = np.load(os.path.join(dir_depth_est, list_depth_est[i]))
 
     mask[0:26, :] = 0
