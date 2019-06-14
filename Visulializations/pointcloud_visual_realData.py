@@ -12,14 +12,17 @@ import cv2
 
 
 data_main_path = "/home/kike/Documents/Dataset/ICCV_dataset/RealData_test/for_kike"
-file = "smarthome1"
+file = "classroom7"
 
 depth_map = np.load(os.path.join(data_main_path, "depth_up/" + file + ".npy"))  # [:, :, 0]
-rgb_map = cv2.imread(os.path.join(data_main_path, "image_up/" + file + ".jpg"))
+rgb_map = cv2.imread(os.path.join(data_main_path, "image_up/" + file + ".png"))
 
 camera = Sphere(width=1024, height=512)
 pcl_GT, color_GT = camera.depthmap2colorpcl(depth_map, rgb_map, format='rgb')
 
+mask = abs(pcl_GT[:, 1]) < 0.9
+pcl_GT = pcl_GT[mask, :]
+color_GT = color_GT[mask, :]
 viewer = setting_viewer(main_axis=False)
 # camera_frame(view=viewer, pose=np.eye(4), size=0.5)
 
