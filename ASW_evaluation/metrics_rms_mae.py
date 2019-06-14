@@ -20,7 +20,7 @@ from utils import *
         |--- image_up
         |--- imag_down
 """
-report_name = "MP3D_ASW.csv"
+report_name = "MP3D_StereoMatching.csv"
 data_path_gt = "/home/kike/Documents/Dataset/ICCV_dataset/MP3D/test"
 data_path_est = "/home/kike/Documents/Dataset/ICCV_dataset/evaluation/Whole_estimations/MP3D/ASW"
 
